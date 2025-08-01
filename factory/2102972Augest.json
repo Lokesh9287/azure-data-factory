@@ -1,0 +1,9 @@
+{
+	"name": "2102972Augest",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e8a0205c-4097-4a41-9941-97f02359567d",
+		"tenantId": "e2e28db8-5a01-4595-808a-4d38febba88d"
+	}
+}

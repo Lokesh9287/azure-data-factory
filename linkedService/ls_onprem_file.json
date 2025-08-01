@@ -1,0 +1,17 @@
+{
+	"name": "ls_onprem_file",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\Azure_Project",
+			"userId": "G.V.S LOKESH",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0YmY0NGE0YS1iNDY1LTRhNDQtOGQyMy02MDQ4ZTcyMDc2MDYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "Lokesh-SelfHosted",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
