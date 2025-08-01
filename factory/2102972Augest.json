@@ -1,5 +1,13 @@
 {
 	"name": "2102972Augest",
+	"properties": {
+		"globalParameters": {
+			"g_p": {
+				"type": "string",
+				"value": "lokesh"
+			}
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
