@@ -20,7 +20,6 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"modifiedDatetimeStart": "2025-08-02T19:30:00.000Z",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -40,7 +39,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "adsf",
 						"type": "DatasetReference"
 					}
 				],
