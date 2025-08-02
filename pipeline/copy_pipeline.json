@@ -79,14 +79,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"Schemaname": {
-				"type": "string"
-			},
-			"Tablename": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
