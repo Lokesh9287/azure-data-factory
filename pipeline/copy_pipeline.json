@@ -22,6 +22,7 @@
 							"recursive": true,
 							"modifiedDatetimeStart": "2025-08-02T19:30:00.000Z",
 							"wildcardFolderPath": "github",
+							"wildcardFileName": "*.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
