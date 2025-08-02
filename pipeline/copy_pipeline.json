@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "cp_adls_to_sql",
+				"name": "Copy data1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -16,70 +16,34 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "ParquetSource",
-						"additionalColumns": [
-							{
-								"name": "FilePath",
-								"value": "$$FILEPATH"
-							},
-							{
-								"name": "FileName",
-								"value": "$$FILENAME"
-							},
-							{
-								"name": "created_date",
-								"value": {
-									"value": "@utcNow()",
-									"type": "Expression"
-								}
-							},
-							{
-								"name": "pipline_name",
-								"value": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								}
-							},
-							{
-								"name": "continent",
-								"value": "'Indian'"
-							}
-						],
+						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
+							"wildcardFolderPath": "github",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "ParquetReadSettings"
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false,
-						"tableOption": "autoCreate",
-						"disableMetricsCollection": false
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
 						}
-					}
+					},
+					"enableStaging": false
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_source1",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_AzureSqlTable",
+						"referenceName": "Binary1",
 						"type": "DatasetReference"
 					}
 				]

@@ -1,22 +1,17 @@
 {
-	"name": "DelimitedText1",
+	"name": "Binary1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_datalake",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "DelimitedText",
+		"type": "Binary",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": "bronze"
-			},
-			"columnDelimiter": ",",
-			"escapeChar": "\\",
-			"firstRowAsHeader": true,
-			"quoteChar": "\""
-		},
-		"schema": []
+				"fileSystem": "wildcards"
+			}
+		}
 	}
 }
