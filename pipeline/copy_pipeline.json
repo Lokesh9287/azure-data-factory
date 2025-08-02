@@ -25,6 +25,20 @@
 							{
 								"name": "FileName",
 								"value": "$$FILENAME"
+							},
+							{
+								"name": "created_date",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "pipline_name",
+								"value": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -60,48 +74,6 @@
 					}
 				],
 				"outputs": [
-					{
-						"referenceName": "ds_AzureSqlTable",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
-				"name": "adls_to_sql",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "cp_adls_to_sql",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"additionalColumns": [
-							{
-								"value": "$$COLUMN:"
-							},
-							{
-								"value": "$$COLUMN:"
-							}
-						],
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"enableStaging": false
-				},
-				"inputs": [
 					{
 						"referenceName": "ds_AzureSqlTable",
 						"type": "DatasetReference"
