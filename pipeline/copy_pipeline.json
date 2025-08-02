@@ -39,6 +39,10 @@
 									"value": "@pipeline().Pipeline",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "Country",
+								"value": "'India'"
 							}
 						],
 						"storeSettings": {
