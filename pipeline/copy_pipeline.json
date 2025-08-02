@@ -19,9 +19,8 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": false,
+							"recursive": true,
 							"wildcardFolderPath": "github",
-							"wildcardFileName": "*csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
