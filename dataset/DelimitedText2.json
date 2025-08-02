@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "test2_output.txt",
 				"fileSystem": "wildcards"
 			},
 			"columnDelimiter": ",",
