@@ -6,12 +6,13 @@
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "Binary",
+		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileSystem": "wildcards"
 			}
-		}
+		},
+		"schema": {}
 	}
 }
