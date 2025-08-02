@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
+						"type": "ParquetSource",
 						"additionalColumns": [
 							{
 								"name": "FilePath",
@@ -33,7 +33,7 @@
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+							"type": "ParquetReadSettings"
 						}
 					},
 					"sink": {
@@ -55,7 +55,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "ds_source1",
 						"type": "DatasetReference"
 					}
 				],
