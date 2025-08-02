@@ -41,8 +41,8 @@
 								}
 							},
 							{
-								"name": "Country",
-								"value": "'India'"
+								"name": "continent",
+								"value": "'Indian'"
 							}
 						],
 						"storeSettings": {
