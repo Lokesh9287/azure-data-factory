@@ -21,10 +21,6 @@
 							{
 								"name": "File_Path",
 								"value": "$$FILEPATH"
-							},
-							{
-								"name": "File_Name",
-								"value": "$$FILENAME"
 							}
 						],
 						"storeSettings": {
