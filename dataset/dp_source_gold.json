@@ -5,12 +5,20 @@
 			"referenceName": "dpGoyal_LinkedService",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"folderpath": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "staging",
+				"folderPath": {
+					"value": "@dataset().folderpath",
+					"type": "Expression"
+				},
 				"fileSystem": "dpgoyaltarget"
 			}
 		},

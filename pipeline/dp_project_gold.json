@@ -91,7 +91,10 @@
 				"inputs": [
 					{
 						"referenceName": "dp_source_gold",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"folderpath": "@concat(formatDateTime(utcNow(), 'yyyy'),'/', formatDateTime(utcNow(),'MM'),'/', formatDateTime(utcNow(),'dd'),'/')"
+						}
 					}
 				],
 				"outputs": [
