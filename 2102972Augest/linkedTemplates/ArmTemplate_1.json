@@ -398,13 +398,20 @@
 					"referenceName": "dpGoyal_LinkedService",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"folderpath": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "Json",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "*json",
-						"folderPath": "staging",
+						"folderPath": {
+							"value": "@dataset().folderpath",
+							"type": "Expression"
+						},
 						"fileSystem": "dpgoyaltarget"
 					}
 				},
@@ -426,7 +433,7 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "customers"
+					"table": "vehicleData"
 				}
 			},
 			"dependsOn": []
@@ -1824,6 +1831,7 @@
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
+									"wildcardFileName": "*.json",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -1834,16 +1842,80 @@
 								"type": "AzureSqlSink",
 								"writeBehavior": "insert",
 								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
-							"enableStaging": false
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['VehicleID']"
+										},
+										"sink": {
+											"name": "VehicleID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['latitiude']"
+										},
+										"sink": {
+											"name": "latitiude",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "$['longitude']"
+										},
+										"sink": {
+											"name": "longitude",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "$['City']"
+										},
+										"sink": {
+											"name": "city",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['temeprature']"
+										},
+										"sink": {
+											"name": "temeprature",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"path": "$['speed']"
+										},
+										"sink": {
+											"name": "speed",
+											"type": "Int32"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
 						},
 						"inputs": [
 							{
 								"referenceName": "dp_source_gold",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"folderpath": {
+										"value": "@concat('staging/',formatDateTime(utcNow(), 'yyyy'),'/', formatDateTime(utcNow(),'MM'),'/', formatDateTime(utcNow(),'dd'),'/')",
+										"type": "Expression"
+									}
+								}
 							}
 						],
 						"outputs": [
