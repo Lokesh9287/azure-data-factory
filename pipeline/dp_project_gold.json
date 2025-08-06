@@ -93,7 +93,10 @@
 						"referenceName": "dp_source_gold",
 						"type": "DatasetReference",
 						"parameters": {
-							"folderpath": "@concat(formatDateTime(utcNow(), 'yyyy'),'/', formatDateTime(utcNow(),'MM'),'/', formatDateTime(utcNow(),'dd'),'/')"
+							"folderpath": {
+								"value": "@concat('staging/',formatDateTime(utcNow(), 'yyyy'),'/', formatDateTime(utcNow(),'MM'),'/', formatDateTime(utcNow(),'dd'),'/')",
+								"type": "Expression"
+							}
 						}
 					}
 				],
