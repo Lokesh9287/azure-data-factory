@@ -69,7 +69,8 @@
 									"path": "$['City']"
 								},
 								"sink": {
-									"name": "City"
+									"name": "City",
+									"type": "String"
 								}
 							},
 							{
