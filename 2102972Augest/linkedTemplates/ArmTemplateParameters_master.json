@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "2102972Augest"
+		},
+		"dpGoyal_LinkedService_accountKey": {
+			"value": ""
+		},
+		"ls_AzureSqlDatabase_password": {
+			"value": ""
+		},
+		"ls_datalake_accountKey": {
+			"value": ""
+		},
+		"ls_onprem_file_password": {
+			"value": ""
+		},
+		"dpGoyal_LinkedService_properties_typeProperties_url": {
+			"value": "https://2102972augestdl.dfs.core.windows.net/"
+		},
+		"ls_AzureSqlDatabase_properties_typeProperties_server": {
+			"value": "2102972adfproject.database.windows.net"
+		},
+		"ls_AzureSqlDatabase_properties_typeProperties_database": {
+			"value": "2102972sqldb"
+		},
+		"ls_AzureSqlDatabase_properties_typeProperties_userName": {
+			"value": "gvsl"
+		},
+		"ls_datalake_properties_typeProperties_url": {
+			"value": "https://2102972augestdl.dfs.core.windows.net/"
+		},
+		"ls_github_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
+		},
+		"ls_onprem_file_properties_typeProperties_host": {
+			"value": "C:\\Azure_Project"
+		},
+		"ls_onprem_file_properties_typeProperties_userId": {
+			"value": "G.V.S LOKESH"
+		},
+		"2102972sqlAzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://keyvault2102972.vault.azure.net/"
+		},
+		"Storage_Trigger_For_Json_properties_typeProperties_scope": {
+			"value": "/subscriptions/3d38008f-faec-43ad-9ae4-a1f773f67cf1/resourceGroups/Azure_Infosys/providers/Microsoft.Storage/storageAccounts/2102972augestdl"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
