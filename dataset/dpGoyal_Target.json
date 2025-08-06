@@ -23,7 +23,7 @@
 					"value": "@dataset().folderpath",
 					"type": "Expression"
 				},
-				"fileSystem": "dpGoyalTarget"
+				"fileSystem": "dogoyaltarget"
 			}
 		},
 		"schema": {}
