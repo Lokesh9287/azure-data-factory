@@ -11,14 +11,8 @@
 		"ls_AzureSqlDatabase_password": {
 			"value": ""
 		},
-		"ls_datalake_accountKey": {
-			"value": ""
-		},
 		"ls_onprem_file_password": {
 			"value": ""
-		},
-		"2102972sqlAzureKeyVault_properties_typeProperties_baseUrl": {
-			"value": "https://keyvault2102972.vault.azure.net/"
 		},
 		"dpGoyal_LinkedService_properties_typeProperties_url": {
 			"value": "https://2102972augestdl.dfs.core.windows.net/"
@@ -46,6 +40,9 @@
 		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/3d38008f-faec-43ad-9ae4-a1f773f67cf1/resourceGroups/Azure_Infosys/providers/Microsoft.Storage/storageAccounts/2102972augestdl"
+		},
+		"udemyprojectskeyvalut_properties_typeProperties_baseUrl": {
+			"value": "https://keyvaultforadf2102972.vault.azure.net/"
 		},
 		"containerUri": {
 			"value": ""

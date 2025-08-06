@@ -15,17 +15,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_AzureSqlDatabase'"
 		},
-		"ls_datalake_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'ls_datalake'"
-		},
 		"ls_onprem_file_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_onprem_file'"
-		},
-		"2102972sqlAzureKeyVault_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://keyvault2102972.vault.azure.net/"
 		},
 		"dpGoyal_LinkedService_properties_typeProperties_url": {
 			"type": "string",
@@ -63,6 +55,10 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/3d38008f-faec-43ad-9ae4-a1f773f67cf1/resourceGroups/Azure_Infosys/providers/Microsoft.Storage/storageAccounts/2102972augestdl"
 		},
+		"udemyprojectskeyvalut_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://keyvaultforadf2102972.vault.azure.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -96,11 +92,8 @@
 					"ls_AzureSqlDatabase_password": {
 						"value": "[parameters('ls_AzureSqlDatabase_password')]"
 					},
-					"ls_datalake_accountKey": {
-						"value": "[parameters('ls_datalake_accountKey')]"
-					},
-					"2102972sqlAzureKeyVault_properties_typeProperties_baseUrl": {
-						"value": "[parameters('2102972sqlAzureKeyVault_properties_typeProperties_baseUrl')]"
+					"ls_onprem_file_password": {
+						"value": "[parameters('ls_onprem_file_password')]"
 					},
 					"dpGoyal_LinkedService_properties_typeProperties_url": {
 						"value": "[parameters('dpGoyal_LinkedService_properties_typeProperties_url')]"
@@ -114,11 +107,20 @@
 					"ls_AzureSqlDatabase_properties_typeProperties_userName": {
 						"value": "[parameters('ls_AzureSqlDatabase_properties_typeProperties_userName')]"
 					},
+					"ls_github_properties_typeProperties_url": {
+						"value": "[parameters('ls_github_properties_typeProperties_url')]"
+					},
+					"udemyprojectskeyvalut_properties_typeProperties_baseUrl": {
+						"value": "[parameters('udemyprojectskeyvalut_properties_typeProperties_baseUrl')]"
+					},
 					"ls_datalake_properties_typeProperties_url": {
 						"value": "[parameters('ls_datalake_properties_typeProperties_url')]"
 					},
-					"ls_github_properties_typeProperties_url": {
-						"value": "[parameters('ls_github_properties_typeProperties_url')]"
+					"ls_onprem_file_properties_typeProperties_host": {
+						"value": "[parameters('ls_onprem_file_properties_typeProperties_host')]"
+					},
+					"ls_onprem_file_properties_typeProperties_userId": {
+						"value": "[parameters('ls_onprem_file_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -138,14 +140,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"ls_onprem_file_password": {
-						"value": "[parameters('ls_onprem_file_password')]"
-					},
-					"ls_onprem_file_properties_typeProperties_host": {
-						"value": "[parameters('ls_onprem_file_properties_typeProperties_host')]"
-					},
-					"ls_onprem_file_properties_typeProperties_userId": {
-						"value": "[parameters('ls_onprem_file_properties_typeProperties_userId')]"
+					"trigger1_properties_typeProperties_scope": {
+						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -166,9 +162,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"trigger1_properties_typeProperties_scope": {
-						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
 					}
 				}
 			},
