@@ -1258,7 +1258,8 @@
 											"path": "$['City']"
 										},
 										"sink": {
-											"name": "City"
+											"name": "City",
+											"type": "String"
 										}
 									},
 									{
@@ -1374,7 +1375,7 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"folderpath": {
-										"value": "@concat('landing/',formatDateTime(utcNow(), 'yyyy'),'/', formatDateTime(utcNow(),'MM'),'/', formatDateTime(utcNow(),'dd'),'/')",
+										"value": "@concat('staging/',formatDateTime(utcNow(), 'yyyy'),'/', formatDateTime(utcNow(),'MM'),'/', formatDateTime(utcNow(),'dd'),'/')",
 										"type": "Expression"
 									}
 								}
@@ -1761,7 +1762,7 @@
 							"value": "@dataset().folderpath",
 							"type": "Expression"
 						},
-						"fileSystem": "dogoyaltarget"
+						"fileSystem": "dpgoyaltarget"
 					}
 				},
 				"schema": {}
@@ -2405,36 +2406,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trigger1')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "dp_project_gold",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/dpgoyaltarget/blobs/staging/",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/dp_project_gold')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Lokesh-SelfHosted')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -2944,6 +2915,26 @@
 				"[concat(variables('factoryId'), '/datasets/ds_source4')]",
 				"[concat(variables('factoryId'), '/linkedServices/ls_datalake')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/dpgoyaltarget/blobs/staging/",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }
