@@ -33,60 +33,7 @@
 						"sqlWriterUseTableLock": false,
 						"disableMetricsCollection": false
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"path": "$['VehicleID']"
-								},
-								"sink": {
-									"name": "VehicleID"
-								}
-							},
-							{
-								"source": {
-									"path": "$['latitiude']"
-								},
-								"sink": {
-									"name": "latitiude"
-								}
-							},
-							{
-								"source": {
-									"path": "$['longitude']"
-								},
-								"sink": {
-									"name": "longitude"
-								}
-							},
-							{
-								"source": {
-									"path": "$['City']"
-								},
-								"sink": {
-									"name": "City"
-								}
-							},
-							{
-								"source": {
-									"path": "$['temeprature']"
-								},
-								"sink": {
-									"name": "temeprature"
-								}
-							},
-							{
-								"source": {
-									"path": "$['speed']"
-								},
-								"sink": {
-									"name": "speed"
-								}
-							}
-						]
-					}
+					"enableStaging": false
 				},
 				"inputs": [
 					{
