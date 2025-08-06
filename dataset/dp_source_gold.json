@@ -1,0 +1,19 @@
+{
+	"name": "dp_source_gold",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dpGoyal_LinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "staging",
+				"fileSystem": "dpgoyaltarget"
+			}
+		},
+		"schema": {}
+	}
+}
