@@ -13,7 +13,7 @@
 		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
-			"blobPathBeginsWith": "/dpgoyaltarget/blobs/staging/",
+			"blobPathBeginsWith": "/dpgoyaltarget/blobs/",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/3d38008f-faec-43ad-9ae4-a1f773f67cf1/resourceGroups/Azure_Infosys/providers/Microsoft.Storage/storageAccounts/2102972augestdl",
 			"events": [
