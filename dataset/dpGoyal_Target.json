@@ -1,0 +1,31 @@
+{
+	"name": "dpGoyal_Target",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dpGoyal_LinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folderpath": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "Customer_Valid.json",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().folderpath",
+					"type": "Expression"
+				},
+				"fileSystem": "dpGoyal_Target"
+			}
+		},
+		"schema": {}
+	}
+}
