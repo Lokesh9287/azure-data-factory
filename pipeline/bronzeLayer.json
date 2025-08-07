@@ -15,25 +15,7 @@
 						"referenceName": "Dynamic pipeline",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"AirLine": {
-							"value": "@pipeline().parameters.AirLine",
-							"type": "Expression"
-						},
-						"Flight": {
-							"value": "@pipeline().parameters.Flight",
-							"type": "Expression"
-						},
-						"Passenger": {
-							"value": "@pipeline().parameters.Passenger",
-							"type": "Expression"
-						},
-						"Files": {
-							"value": "@pipeline().parameters.Files",
-							"type": "Expression"
-						}
-					}
+					"waitOnCompletion": true
 				}
 			},
 			{
