@@ -15,7 +15,7 @@
 		"parameters": {
 			"table_name": {
 				"type": "array",
-				"defaultValue": "['product', 'customer']"
+				"defaultValue": "{'product', 'customer'}"
 			}
 		},
 		"annotations": []
