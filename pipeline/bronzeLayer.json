@@ -53,7 +53,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "API_Ingestion",
+						"referenceName": "dp_project_silver",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
