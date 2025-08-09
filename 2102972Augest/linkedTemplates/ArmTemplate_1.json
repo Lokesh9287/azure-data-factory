@@ -6,16 +6,81 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "2102972Augest"
-		},
-		"trigger1_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/3d38008f-faec-43ad-9ae4-a1f773f67cf1/resourceGroups/Azure_Infosys/providers/Microsoft.Storage/storageAccounts/2102972augestdl"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_datalake",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "wildcards"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Prop_0",
+						"type": "String"
+					},
+					{
+						"name": "Prop_1",
+						"type": "String"
+					},
+					{
+						"name": "Prop_2",
+						"type": "String"
+					},
+					{
+						"name": "Prop_3",
+						"type": "String"
+					},
+					{
+						"name": "Prop_4",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_api_Sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_datalake",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "dim_airport.json",
+						"folderPath": "github",
+						"fileSystem": "bronze"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_lookup')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -597,302 +662,8 @@
 				"annotations": [],
 				"lastPublishTime": "2025-08-01T12:58:20Z"
 			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Dynamic pipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Iterations",
-						"type": "ForEach",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@pipeline().parameters.Files",
-								"type": "Expression"
-							},
-							"activities": [
-								{
-									"name": "MigrateOnPremFiles_copy",
-									"type": "Copy",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "0.12:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"source": {
-											"type": "DelimitedTextSource",
-											"storeSettings": {
-												"type": "AzureBlobFSReadSettings",
-												"recursive": true,
-												"enablePartitionDiscovery": false
-											},
-											"formatSettings": {
-												"type": "DelimitedTextReadSettings"
-											}
-										},
-										"sink": {
-											"type": "ParquetSink",
-											"storeSettings": {
-												"type": "AzureBlobFSWriteSettings",
-												"copyBehavior": "MergeFiles"
-											},
-											"formatSettings": {
-												"type": "ParquetWriteSettings"
-											}
-										},
-										"enableStaging": false,
-										"translator": {
-											"value": "@if(\n    equals(item().name,'DimFlight.csv') ,pipeline().parameters.Flight,\n    if(equals(item().name,'DimPassenger.csv') ,pipeline().parameters.Passenger,\n    pipeline().parameters.AirLine)\n)",
-											"type": "Expression"
-										}
-									},
-									"inputs": [
-										{
-											"referenceName": "ds_source",
-											"type": "DatasetReference",
-											"parameters": {
-												"FileName": {
-													"value": "@item().name",
-													"type": "Expression"
-												}
-											}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "ds_target",
-											"type": "DatasetReference",
-											"parameters": {
-												"FileName": {
-													"value": "@{concat(split(item().name, '.')[0], '.parquet')}",
-													"type": "Expression"
-												}
-											}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"AirLine": {
-						"type": "object",
-						"defaultValue": {
-							"type": "TabularTranslator",
-							"mappings": [
-								{
-									"source": {
-										"name": "airline_id",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "airline_id",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								},
-								{
-									"source": {
-										"name": "airline_name",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "airline_name",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								},
-								{
-									"source": {
-										"name": "country",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "country",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								}
-							],
-							"typeConversion": true,
-							"typeConversionSettings": {
-								"allowDataTruncation": true,
-								"treatBooleanAsNumber": false
-							}
-						}
-					},
-					"Flight": {
-						"type": "object",
-						"defaultValue": {
-							"type": "TabularTranslator",
-							"mappings": [
-								{
-									"source": {
-										"name": "flight_id",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "flight_id",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								},
-								{
-									"source": {
-										"name": "flight_number",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "flight_number",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								},
-								{
-									"source": {
-										"name": "departure_time",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "departure_time",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								},
-								{
-									"source": {
-										"name": "arrival_time",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "arrival_time",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								}
-							],
-							"typeConversion": true,
-							"typeConversionSettings": {
-								"allowDataTruncation": true,
-								"treatBooleanAsNumber": false
-							}
-						}
-					},
-					"Passenger": {
-						"type": "object",
-						"defaultValue": {
-							"type": "TabularTranslator",
-							"mappings": [
-								{
-									"source": {
-										"name": "passenger_id",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "passenger_id",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								},
-								{
-									"source": {
-										"name": "full_name",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "full_name",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								},
-								{
-									"source": {
-										"name": "gender",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "gender",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								},
-								{
-									"source": {
-										"name": "age",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "age",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								},
-								{
-									"source": {
-										"name": "country",
-										"type": "String",
-										"physicalType": "String"
-									},
-									"sink": {
-										"name": "country",
-										"type": "String",
-										"physicalType": "UTF8"
-									}
-								}
-							],
-							"typeConversion": true,
-							"typeConversionSettings": {
-								"allowDataTruncation": true,
-								"treatBooleanAsNumber": false
-							}
-						}
-					},
-					"Files": {
-						"type": "array",
-						"defaultValue": [
-							{
-								"name": "DimAirline.csv"
-							},
-							{
-								"name": "DimFlight.csv"
-							},
-							{
-								"name": "DimPassenger.csv"
-							}
-						]
-					}
-				},
-				"annotations": [],
-				"lastPublishTime": "2025-08-01T12:58:21Z"
-			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ds_source')]",
-				"[concat(variables('factoryId'), '/datasets/ds_target')]"
+				"[concat(variables('factoryId'), '/datasets/ds_api_Sink')]"
 			]
 		},
 		{
@@ -1305,7 +1076,9 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DelimitedText2')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/onprem_ingestion')]",
@@ -1469,34 +1242,6 @@
 				"[concat(variables('factoryId'), '/datasets/ds_source')]",
 				"[concat(variables('factoryId'), '/datasets/ds_target')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trigger1')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "dp_project_gold",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/dpgoyaltarget/",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": []
 		}
 	]
 }

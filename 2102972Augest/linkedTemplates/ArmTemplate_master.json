@@ -51,13 +51,13 @@
 			"type": "string",
 			"defaultValue": "G.V.S LOKESH"
 		},
-		"trigger1_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/3d38008f-faec-43ad-9ae4-a1f773f67cf1/resourceGroups/Azure_Infosys/providers/Microsoft.Storage/storageAccounts/2102972augestdl"
-		},
 		"udemyprojectskeyvalut_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://keyvaultforadf2102972.vault.azure.net/"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/3d38008f-faec-43ad-9ae4-a1f773f67cf1/resourceGroups/Azure_Infosys/providers/Microsoft.Storage/storageAccounts/2102972augestdl"
 		},
 		"containerUri": {
 			"type": "string",
@@ -139,9 +139,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"trigger1_properties_typeProperties_scope": {
-						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -162,6 +159,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"trigger1_properties_typeProperties_scope": {
+						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
 					}
 				}
 			},
